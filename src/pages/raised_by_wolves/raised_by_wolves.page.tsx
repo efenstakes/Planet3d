@@ -77,10 +77,10 @@ const RaisedByWolvesPage = () => {
           // scene.createDefaultCameraOrLight(true, true, true)
           // scene.createDefaultEnvironment()
           
-          meshes[0].scaling = new Vector3(2.6, 2.6, 2.6)
-          // meshes[0].rotation.x += .1
+          meshes[0].scaling = new Vector3(3, 3, 3)
+          meshes[0].rotation.x = .03
           // meshes[0].rotation.z = 0
-          meshes[0].position.y = -3
+          meshes[0].position.y = -2.8
   
           mother = meshes[0]
       })
@@ -182,7 +182,14 @@ const RaisedByWolvesPage = () => {
         }
       })
       engine.runRenderLoop(()=> scene.render())
+
+
+      // when page resizes, resize engine
+      window.addEventListener("resize", ()=> engine.resize())
   
+      return ()=> {
+        window.removeEventListener("resize", ()=> {})
+      }
     }, [])
   
   
