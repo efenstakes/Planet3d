@@ -26,6 +26,7 @@ const RaisedByWolvesPage = () => {
     const canvasRef = useRef(null)
     const [loadingStatus, setLoadingStatus] = useState<string>("ACTIVATING")
     const titleLabelRef = useRef<TextBlock | null>(null)
+    const titleRectRef = useRef<Rectangle | null>(null)
 
 
     useEffect(()=> {
@@ -141,12 +142,19 @@ const RaisedByWolvesPage = () => {
         const gui = AdvancedDynamicTexture.CreateFullscreenUI("UI")
     
         // 
+  
+        let label = new TextBlock()
+        titleLabelRef.current = label
+        label.text = loadingStatus.toUpperCase()
+        label.fontSize = "16px"
+        label.color = "white"
+
         const rectangle = new Rectangle("Rectangle")
         rectangle.background = "darkgreen"
-        rectangle.height = "40px"
+        rectangle.height = "32px"
         rectangle.alpha = .7
         // rectangle.width = "30px"
-        rectangle.width = "120px"
+        rectangle.width = "160px"
         rectangle.cornerRadius = 8
         rectangle.thickness = 1
         rectangle.linkOffsetX = 40
@@ -154,11 +162,7 @@ const RaisedByWolvesPage = () => {
         rectangle.zIndex = 100
         rectangle.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP
   
-  
-        let label = new TextBlock()
-        titleLabelRef.current = label
-        label.text = loadingStatus.toUpperCase()
-        label.color = "white"
+        titleRectRef.current = rectangle
         
         rectangle.addControl(label)
     
@@ -240,6 +244,9 @@ const RaisedByWolvesPage = () => {
     useEffect(() => {
         if( !titleLabelRef || ! titleLabelRef.current ) return
         titleLabelRef.current.text = loadingStatus
+
+        if( !titleRectRef || ! titleRectRef.current ) return
+        titleRectRef.current.background = loadingStatus == "ACTIVATING" ? "black" : "darkgreen"
     }, [ loadingStatus ])
   
     return (
