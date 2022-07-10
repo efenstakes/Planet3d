@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 import { 
   Engine, 
@@ -24,6 +24,9 @@ import { getInput, UserInput } from '../../utils/input.utils'
 
 const RaisedByWolvesPage = () => {
     const canvasRef = useRef(null)
+    const [loadingStatus, setLoadingStatus] = useState<string>("ACTIVATING")
+    const titleLabelRef = useRef<TextBlock | null>(null)
+
 
     useEffect(()=> {
   
@@ -90,6 +93,8 @@ const RaisedByWolvesPage = () => {
             meshes[0].position.y = 1
     
             mother = meshes[0]
+
+            setLoadingStatus(()=> "ACTIVE")
         })
   
         // const box = MeshBuilder.CreateBox(
@@ -151,7 +156,8 @@ const RaisedByWolvesPage = () => {
   
   
         let label = new TextBlock()
-        label.text = "ACTIVE"
+        titleLabelRef.current = label
+        label.text = loadingStatus.toUpperCase()
         label.color = "white"
         
         rectangle.addControl(label)
@@ -231,6 +237,10 @@ const RaisedByWolvesPage = () => {
         }
     }, [])
   
+    useEffect(() => {
+        if( !titleLabelRef || ! titleLabelRef.current ) return
+        titleLabelRef.current.text = loadingStatus
+    }, [ loadingStatus ])
   
     return (
         <div>
