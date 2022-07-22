@@ -14,6 +14,7 @@ import PlanetsOnePage from "./pages/planets_one/planets_one.page"
 import LinkedControlsPage from "./pages/linked_controls/linked_controls.page"
 import LinkedControlsTwoPage from "./pages/linked_controls_two/linked_controls_two.page"
 import BallyGamePage from "./pages/bally_game/bally_game.page"
+import RaisedByWolvesFactoryPage from "./pages/raised_by_wolves_factory/raised_by_wolves_factory.page"
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<RaisedByWolvesPage />} />
+          <Route path="/ray" element={<RaisedByWolvesFactoryPage />} />
           <Route path="/hearty-one" element={<HeartyOnePage />} />
           <Route path="/balls" element={<BallsPage />} />
           <Route path="/planets-one" element={<PlanetsOnePage />} />
