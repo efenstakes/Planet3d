@@ -15,6 +15,7 @@ import LinkedControlsPage from "./pages/linked_controls/linked_controls.page"
 import LinkedControlsTwoPage from "./pages/linked_controls_two/linked_controls_two.page"
 import BallyGamePage from "./pages/bally_game/bally_game.page"
 import RaisedByWolvesFactoryPage from "./pages/raised_by_wolves_factory/raised_by_wolves_factory.page"
+import CoinsPage from "./pages/coins/coins.page"
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/lc" element={<LinkedControlsPage />} />
           <Route path="/lc2" element={<LinkedControlsTwoPage />} />
           <Route path="/bg" element={<BallyGamePage />} />
+          <Route path="/coins" element={<CoinsPage />} />
         </Routes>
       </BrowserRouter>
     </div>
